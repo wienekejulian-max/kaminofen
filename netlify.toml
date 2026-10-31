@@ -1,0 +1,27 @@
+# Netlify-Einstellungen für die Kaminofen- und Brennholz-Seite
+# Die Website besteht nur aus fertigen Dateien, es gibt keinen Build-Schritt.
+[build]
+  publish = "."
+
+# Sicherheits-Header für alle Seiten.
+# Achtung: Wenn später Umami, Google AdSense oder ein Einwilligungsbanner dazukommen,
+# muss die Content-Security-Policy dafür erweitert werden.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Sobald die Domain feststeht: www auf die Hauptadresse umleiten (DOMAIN-PLATZHALTER ersetzen und einkommentieren)
+# [[redirects]]
+#   from = "https://www.DOMAIN-PLATZHALTER.de/*"
+#   to = "https://DOMAIN-PLATZHALTER.de/:splat"
+#   status = 301
+#   force = true
